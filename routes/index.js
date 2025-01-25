@@ -1,9 +1,16 @@
-var express = require('express');
-var router = express.Router();
+var express = require('express'); //import express
+var router = express.Router(); //import router dari express
+const { pool } = require('../database/db'); //import pool dari db.js 
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+// GET all users
+router.get('/', async (req, res) => { 
+  try {
+    const result = await pool.query('SELECT * FROM users');
+    res.json(result.rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send(err.message);
+  }
 });
 
 module.exports = router;
