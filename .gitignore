@@ -3,3 +3,9 @@
 
 # Node Modules
 node_modules
+
+# Eslint Configurations
+.eslintrc.json
+
+# Prettier Configurations
+.prettierrc.json
