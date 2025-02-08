@@ -7,9 +7,13 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+// import DB Connection
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var taskRouter = require('./routes/task');
+var usertaskRouter = require('./routes/usertask');
 
+//create express app
 var app = express();
 
 // view engine setup
@@ -22,8 +26,17 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter); //gunakan indexRouter untuk route '/' / root
+// Greating API
+app.use('/', indexRouter);
+
+// Users API
 app.use('/users', usersRouter);
+
+// Task API
+app.use('/task', taskRouter);
+
+// Usertask API
+app.use('/usertask', usertaskRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
