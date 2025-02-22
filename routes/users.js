@@ -59,11 +59,11 @@ router.put('/update/:id', async function (req, res) {
   const hashPassword = bcrypt.hash(password, 10);
   const stringPassword = stringify(hashPassword);
   const { username, email, password } = req.body;
-  username === ' '
+  username === ''
     ? res.json('Please fill the name field')
-    : email === ' '
+    : email === ''
       ? res.json('Please fill the email field')
-      : password === ' '
+      : password === ''
         ? res.json('Please fill the password field')
         : async () => {
             const user = await prisma.user.update({
